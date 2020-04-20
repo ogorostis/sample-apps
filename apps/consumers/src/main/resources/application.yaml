@@ -1,0 +1,15 @@
+app:
+  message: Welcome to Consumers
+
+server:
+  servlet:
+    context-path: /consumers
+
+spring:
+  kafka:
+    bootstrap-servers: kafka:9092
+    consumer:
+      bootstrap-servers: kafka:9092
+      group-id: group1
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer

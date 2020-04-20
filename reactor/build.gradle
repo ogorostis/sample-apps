@@ -1,0 +1,25 @@
+dependencies {
+    implementation project(":common")
+    implementation('com.fasterxml.jackson.core:jackson-databind')
+    implementation("io.projectreactor:reactor-core")
+}
+
+task runSampleApp(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'com.vnet.samples.reactor.SampleApp'
+}
+
+task runArticleApp(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'com.vnet.samples.reactor.ArticleApp'
+}
+
+task runFlattenApp(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'com.vnet.samples.reactor.FlattenApp'
+}
+
+test {
+    testLogging.showStandardStreams = true
+    useTestNG()
+}

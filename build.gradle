@@ -1,0 +1,38 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.6.RELEASE'
+}
+
+subprojects {
+    group = 'com.vnet.samples'
+    version = '0.0.1-SNAPSHOT'
+
+    apply plugin: 'java'
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/libs-release" }
+        maven { url "https://repo.spring.io/libs-milestone" }
+        maven { url "https://repo.spring.io/libs-snapshot" }
+    }
+
+    dependencies {
+        implementation 'io.projectreactor:reactor-core:3.3.2.RELEASE'
+        implementation 'com.fasterxml.jackson.core:jackson-databind:2.10.3'
+        implementation 'org.apache.commons:commons-lang3:3.9'
+
+        implementation('ch.qos.logback:logback-classic:1.2.3')
+        implementation('org.slf4j:slf4j-api:1.7.30')
+        compileOnly 'org.projectlombok:lombok:1.18.10'
+        annotationProcessor 'org.projectlombok:lombok:1.18.10'
+
+        testImplementation 'org.testng:testng:7.0.0'
+        testRuntimeOnly 'org.testng:testng:7.0.0'
+    }
+
+    compileJava {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    defaultTasks "clean", "build"
+
+}

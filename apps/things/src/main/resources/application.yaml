@@ -1,0 +1,18 @@
+app:
+  message: Welcome to Things
+
+server:
+  servlet:
+    context-path: /things
+
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: kafka:9092
+      client-id: things-app
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+topics:
+  guest-events: guest-events
+  registration: registration
