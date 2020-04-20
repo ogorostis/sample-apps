@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class KafkaConsumer {
-    @KafkaListener(topics = "guest-events")
+    @KafkaListener(topics = "sample-events")
     public void listen(final ConsumerRecord<String, String> record) throws Exception {
         final Event event = Event.deserialize(record.value());
         log.info("Type:{}", event.getType());

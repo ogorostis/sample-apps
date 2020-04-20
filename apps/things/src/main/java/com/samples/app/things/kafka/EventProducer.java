@@ -13,8 +13,13 @@ import java.util.HashMap;
 
 @Component
 public class EventProducer {
-    @Value("${topics.guest-events}")
-    private String guestEventsTopic;
+    private int count = 0;
+
+    @Value("${topics.sample-events.name}")
+    private String topic;
+
+    @Value("${topics.sample-events.partitions}")
+    private int partitions;
 
     private final KafkaTemplate<String, String> template;
 
@@ -29,13 +34,19 @@ public class EventProducer {
         }
 
         try {
-            template.send(guestEventsTopic, event.getKey(), event.serialize());
+            final int n = next();
+            template.send(topic, n % partitions, event.getKey(), event.serialize());
             return new HashMap<String, Object>() {{
                 put("key", event.getKey());
-                put("topic", guestEventsTopic);
+                put("topic", topic);
+                put("count", n);
             }};
         } catch (JsonProcessingException e) {
             throw new SampleException(500, "Serialization error", e);
         }
+    }
+
+    private synchronized int next() {
+        return count++;
     }
 }

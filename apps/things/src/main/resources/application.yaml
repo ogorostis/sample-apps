@@ -14,5 +14,6 @@ spring:
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
 topics:
-  guest-events: guest-events
-  registration: registration
+  sample-events:
+    name: sample-events
+    partitions: 3
