@@ -47,6 +47,6 @@ public class EventProducer {
     }
 
     private synchronized int next() {
-        return count++;
+        return ++count;
     }
 }
